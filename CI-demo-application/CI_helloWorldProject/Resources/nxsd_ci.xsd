@@ -1,0 +1,23 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+xmlns="http://api.ci.com/continuousIntegration" 
+targetNamespace="http://api.ci.com/continuousIntegration" 
+elementFormDefault="qualified" 
+xmlns:nxsd="http://xmlns.oracle.com/pcbpel/nxsd" 
+nxsd:version="JSON" nxsd:encoding="UTF-8">
+   <xsd:element name="requestCI">
+      <xsd:complexType>
+         <xsd:sequence>
+            <xsd:element name="name" type="xsd:string"/>
+            <xsd:element name="edad" type="xsd:integer"/>
+         </xsd:sequence>
+      </xsd:complexType>
+   </xsd:element>
+<xsd:element name="responseCI">
+      <xsd:complexType>
+         <xsd:sequence>
+            <xsd:element name="saludo" type="xsd:string"/>
+         </xsd:sequence>
+      </xsd:complexType>
+   </xsd:element>
+</xsd:schema>

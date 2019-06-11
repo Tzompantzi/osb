@@ -1,0 +1,34 @@
+<wsdl:definitions name="ci" targetNamespace="http://xmlns.oracle.com/CI-demo-application/CI_helloWorldProject/ci" xmlns:tns="http://xmlns.oracle.com/CI-demo-application/CI_helloWorldProject/ci" xmlns:inp1="http://api.ci.com/continuousIntegration" xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+    <plnk:partnerLinkType name="ci">
+        <plnk:role name="ciProvider" portType="tns:ci_ptt"/>
+    </plnk:partnerLinkType>
+    <wsdl:types>
+        <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <xsd:import namespace="http://api.ci.com/continuousIntegration" schemaLocation="nxsd_ci.xsd"/>
+        </xsd:schema>
+    </wsdl:types>
+    <wsdl:message name="holaCI_inputMessage">
+        <wsdl:part name="request" element="inp1:requestCI"/>
+    </wsdl:message>
+    <wsdl:message name="holaCI_outputMessage">
+        <wsdl:part name="reply" element="inp1:responseCI"/>
+    </wsdl:message>
+    <wsdl:portType name="ci_ptt">
+        <wsdl:operation name="holaCI">
+            <wsdl:input message="tns:holaCI_inputMessage"/>
+            <wsdl:output message="tns:holaCI_outputMessage"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="ci_ptt-binding" type="tns:ci_ptt">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="holaCI">
+            <soap:operation soapAction="holaCI"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+</wsdl:definitions>

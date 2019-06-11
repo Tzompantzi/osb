@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:pipelineEntry xmlns:con="http://www.bea.com/wli/sb/pipeline/config" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:con1="http://www.bea.com/wli/sb/stages/config" xmlns:con2="http://www.bea.com/wli/sb/stages/transform/config">
+    <con:coreEntry>
+        <con:binding type="SOAP" isSoap12="false" xsi:type="con:SoapBindingType">
+            <con:wsdl ref="CI_helloWorldProject/Resources/ci"/>
+            <con:binding>
+                <con:name>ci_ptt-binding</con:name>
+                <con:namespace>http://xmlns.oracle.com/CI-demo-application/CI_helloWorldProject/ci</con:namespace>
+            </con:binding>
+        </con:binding>
+        <con:xqConfiguration>
+            <con:snippetVersion>1.0</con:snippetVersion>
+        </con:xqConfiguration>
+    </con:coreEntry>
+    <con:router>
+        <con:pipeline type="request" name="request-N3f57fff8.Na3b08f3.0.16b44969f9a.N8000">
+            <con:stage id="_StageId-N3f57fff8.Na3b08f3.0.16b44969f9a.N7ffe" name="Stage1">
+                <con:context/>
+                <con:actions/>
+            </con:stage>
+        </con:pipeline>
+        <con:pipeline type="response" name="response-N3f57fff8.Na3b08f3.0.16b44969f9a.N7fff">
+            <con:stage id="_StageId-N3f57fff8.Na3b08f3.0.16b44969f9a.N7ffd" name="Stage1">
+                <con:context>
+                    <con1:userNsDecl prefix="con" namespace="http://api.ci.com/continuousIntegration"/>
+                </con:context>
+                <con:actions>
+                    <con2:assign varName="body">
+                        <con1:id>_ActionId-N3f57fff8.Na3b08f3.0.16b44969f9a.N7ffa</con1:id>
+                        <con2:expr>
+                            <con1:xqueryTransform>
+                                <con1:resource ref="CI_helloWorldProject/responseCI"/>
+                                <con1:param name="requestCI">
+                                    <con1:path>$body/con:requestCI</con1:path>
+                                </con1:param>
+                            </con1:xqueryTransform>
+                        </con2:expr>
+                    </con2:assign>
+                </con:actions>
+            </con:stage>
+        </con:pipeline>
+        <con:flow>
+            <con:pipeline-node name="Pipeline Pair Node1">
+                <con:request>request-N3f57fff8.Na3b08f3.0.16b44969f9a.N8000</con:request>
+                <con:response>response-N3f57fff8.Na3b08f3.0.16b44969f9a.N7fff</con:response>
+            </con:pipeline-node>
+        </con:flow>
+    </con:router>
+</con:pipelineEntry>
